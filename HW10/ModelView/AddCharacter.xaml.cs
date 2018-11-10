@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace HW7.viewModel
+namespace HW10.viewModel
 {
     /// <summary>
     /// Interaction logic for AddCharacter.xaml

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HW7.Properties
+namespace HW10.Properties
 {
 
 

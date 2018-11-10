@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Windows.Input;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight.Command;
 
-namespace HW7.ViewModel
+namespace HW10.Shared.ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
@@ -18,8 +16,10 @@ namespace HW7.ViewModel
         private LocationTreeViewModel locVM;
         private BookDataGridViewModel bookVM;
 
-        public MainViewModel()
+        public MainViewModel(IPlatformServices services)
         {
+            this.platformServices = services ?? throw new ArgumentNullException(nameof(services));
+
             DateTime date1 = new DateTime(1994, 8, 29);
             DateTime date2 = new DateTime(1968, 2, 1);
             DateTime date3 = new DateTime(1975, 12, 3);
@@ -43,7 +43,7 @@ namespace HW7.ViewModel
             var locations = new BindingList<Location>(new[] { new Location() { Name = "Mountain", Description = "Filled with trees and hills." } });
 
             cmdsVM = new CmdViewModel();
-            locVM = new LocationTreeViewModel(new ObservableCollection<Location>(locations));
+            locVM = new LocationTreeViewModel(new ObservableCollection<Location>(locations), services);
             bookVM = new BookDataGridViewModel();
         }
 
@@ -77,14 +77,16 @@ namespace HW7.ViewModel
         }
 
         int childNumber = 1;
-        private RelayCommand addSingleCharacter;
-        public RelayCommand AddSingleCharacter => addSingleCharacter ?? (addSingleCharacter = new RelayCommand(
+
+        private ICommand addSingleCharacter;
+        public ICommand AddSingleCharacter => addSingleCharacter ?? (addSingleCharacter = platformServices.CreateCommand(
             () => Characters.Add(new Character() { FirstName = $"First {childNumber++}", LastName = $"Last {childNumber}" })));
 
-        private RelayCommand removeSelectedCharacter;
-        public RelayCommand RemoveSelectedCharacter => removeSelectedCharacter ?? (removeSelectedCharacter = new RelayCommand(
+        private ICommand removeSelectedCharacter;
+        public ICommand RemoveSelectedCharacter => removeSelectedCharacter ?? (removeSelectedCharacter = platformServices.CreateCommand(
             () => Characters.Remove(SelectedCharacter)));
 
+        private readonly IPlatformServices platformServices;
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

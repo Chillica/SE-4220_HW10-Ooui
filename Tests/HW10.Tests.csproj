@@ -55,6 +55,16 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HW10.Shared\HW10.Shared.csproj">
+      <Project>{386c37f4-edd7-4153-aa56-17bf370a5a0b}</Project>
+      <Name>HW10.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HW10\HW10.csproj">
+      <Project>{1ae7ade8-a083-4bf1-9390-16a149d6179b}</Project>
+      <Name>HW10</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

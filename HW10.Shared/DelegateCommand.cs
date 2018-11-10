@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HW7
+namespace HW10.Shared
 {
     public class DelegateCommand<T> : System.Windows.Input.ICommand where T : class
     {

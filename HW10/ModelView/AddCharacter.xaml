@@ -1,4 +1,4 @@
-﻿<Window x:Class="HW7.viewModel.AddCharacter"
+﻿<Window x:Class="HW10.viewModel.AddCharacter"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"

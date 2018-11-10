@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HW7
+namespace HW10.Shared
 {
     public class Character : INotifyPropertyChanged, IDataErrorInfo
     {

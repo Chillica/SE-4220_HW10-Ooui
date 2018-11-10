@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Linq;
 using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
-namespace HW7.ViewModel
+namespace HW10.Shared.ViewModel
 {
     public class BookDataGridViewModel : INotifyPropertyChanged
     {

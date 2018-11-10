@@ -71,18 +71,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Book.cs" />
-    <Compile Include="Character.cs" />
-    <Compile Include="DelegateCommand.cs" />
-    <Compile Include="Location.cs" />
     <Compile Include="ModelView\AddCharacter.xaml.cs">
       <DependentUpon>AddCharacter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\BookDataGridViewModel.cs" />
-    <Compile Include="ViewModel\CmdViewModel.cs" />
-    <Compile Include="ViewModel\LocationTreeViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="WPFPlatformServices.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -130,6 +123,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HW10.Shared\HW10.Shared.csproj">
+      <Project>{386c37f4-edd7-4153-aa56-17bf370a5a0b}</Project>
+      <Name>HW10.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

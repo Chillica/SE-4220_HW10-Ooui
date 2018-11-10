@@ -1,21 +1,19 @@
-﻿using GalaSoft.MvvmLight.Command;
-using System;
+﻿using System.Linq;
+using System.Windows.Input;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HW7.ViewModel
+namespace HW10.Shared.ViewModel
 {
     public class LocationTreeViewModel : INotifyPropertyChanged
     {
-        public LocationTreeViewModel(ObservableCollection<Location> locations)
+        public LocationTreeViewModel(ObservableCollection<Location> locations, IPlatformServices platformServices)
         {
             Locations = locations;
             SelectedLocation = locations?.FirstOrDefault();
+            this.platformServices = platformServices;
         }
 
         public ObservableCollection<Location> Locations { get; }
@@ -28,9 +26,11 @@ namespace HW7.ViewModel
         }
 
         int childNumber = 1;
-        private RelayCommand addSingleLocation;
-        public RelayCommand AddSingleLocation => addSingleLocation ?? (addSingleLocation = new RelayCommand(
+        private ICommand addSingleLocation;
+        public ICommand AddSingleLocation => addSingleLocation ?? (addSingleLocation = platformServices.CreateCommand(
             () => SelectedLocation.Children.Add(new Location() { Name = $"Child {childNumber++}" })));
+
+        private readonly IPlatformServices platformServices;
 
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;

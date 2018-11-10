@@ -1,24 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Controls;
 
-namespace HW7.ViewModel
+namespace HW10.Shared.ViewModel
 {
     public class CmdViewModel : INotifyPropertyChanged
     {
-
-        private readonly DelegateCommand<string> _clickCharViewListCommand;
-        private readonly DelegateCommand<string> _exitCommand;
-
         public CmdViewModel()
         {
 
-            _clickCharViewListCommand = new DelegateCommand<string>(
+            CharViewListCommand = new DelegateCommand<string>(
                 (s) =>
                 { /* perform some action */
                     if (IsCharListOpen == false)
@@ -28,10 +20,10 @@ namespace HW7.ViewModel
                 }, //Execute
                 (s) => { return !string.IsNullOrEmpty(_input); } //CanExecute
            );
-            _exitCommand = new DelegateCommand<string>(
+            ExitCommand = new DelegateCommand<string>(
                (s) =>
                { /* perform some action */
-                   System.Windows.Application.Current.Shutdown();
+                   Environment.Exit(0);
                }, //Execute
                (s) => { return !string.IsNullOrEmpty(_input); } //CanExecute
           );
@@ -50,15 +42,9 @@ namespace HW7.ViewModel
             }
         }
 
-        public DelegateCommand<string> CharViewListCommand
-        {
-            get { return _clickCharViewListCommand; }
-        }
+        public DelegateCommand<string> CharViewListCommand { get; }
 
-        public DelegateCommand<string> ExitCommand
-        {
-            get { return _exitCommand; }
-        }
+        public DelegateCommand<string> ExitCommand { get; }
 
         private string _input = "can execute";
         public string Input
@@ -67,7 +53,7 @@ namespace HW7.ViewModel
             set
             {
                 _input = value;
-                _clickCharViewListCommand.RaiseCanExecuteChanged();
+                CharViewListCommand.RaiseCanExecuteChanged();
             }
         }
 

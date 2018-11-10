@@ -15,8 +15,9 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using HW10.Shared.ViewModel;
 
-namespace HW7.ViewModel
+namespace HW10.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the
