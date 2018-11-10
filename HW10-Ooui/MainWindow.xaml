@@ -3,10 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HW10_Ooui.MainWindow">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="Select a Character Below:"
+               FontAttributes="Bold"
+               FontSize="Large"/>
+            <ListView ItemsSource="{Binding Characters}"
+                  SelectedItem="{Binding SelectedCharacter}"
+                  Grid.Row="1"
+                  HeightRequest="150"
+                  BackgroundColor="Transparent">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<StackLayout Grid.Row="2">
+                <Button Command="{Binding AddSingleCharacter}"
+                    Text="Add New Character" />
+                <Button Command="{Binding RemoveSingleCharacter}"
+                    Text="Remove a Character" />
+            </StackLayout>-->
+
+            <StackLayout Grid.Column="1"
+                     Grid.RowSpan="5"
+                     BindingContext="{Binding SelectedCharacter}">
+                <Label Text="Charcter Name: " />
+                <Label Text="{Binding Name}" />
+                <Label Text="Birthday: " />
+                <Label Text="{Binding Born}" />
+                <Label Text="Height: " />
+                <Label Text="{Binding Height}" />
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
